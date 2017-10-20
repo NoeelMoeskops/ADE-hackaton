@@ -1,2 +1,6 @@
 .sass-cache/
 *.css.map
+.idea
+node_modules
+package-lock.json
+dist/style/*
