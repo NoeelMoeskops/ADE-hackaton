@@ -5,10 +5,11 @@ document.addEventListener("deviceready", function () {
 function getMood() {
     navigator.camera.getPicture(function (base64) {
         // on succes
-
+        // set img
+        // console.info(base64);
+        // setImage(base64);
         sendToServer().done(function (data) {
             // determan mood
-            // console.log("haha");
             var lowestMood = getlowestMood(data[0].scores);
             console.log(lowestMood);
             document.querySelector("#MOOD_VAR").append(lowestMood);
@@ -17,7 +18,7 @@ function getMood() {
     }, function (e) {
         // foto failed
         alert("taking the picture failed: " + e);
-    }, {destinationType: Camera.DestinationType.DATA_URL});
+    }, {destinationType: Camera.DestinationType.FILE_URI});
 }
 function getlowestMood(mood) {
     // console.info("getlowestMood");
@@ -57,10 +58,14 @@ function sendToServer() {
         }
     });
 }
+function setImage(img) {
+    document.querySelector(".profile-pic").src = img;
+}
 function init() {
     // var lowestMood;
     // sendToServer().done(function (data) {
     //     lowestMood = getlowestMood(data[0].scores);
     // });
     getMood();
+    setImage();
 }
