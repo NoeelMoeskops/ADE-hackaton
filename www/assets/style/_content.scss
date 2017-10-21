@@ -1,0 +1,126 @@
+
+.main {
+	position: relative;
+	width: 100vw;
+	height: 100vh;
+	@include gradientAnimated();
+	overflow: hidden;
+	
+	color: #fff;
+
+	h1, h2, h3, p {
+		color: #fff;
+	}
+
+
+}
+
+.screen {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	transform: translateX(100%);
+	
+	.center-text {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		text-align: center;
+	}
+
+	&.animate--in {
+		transform: translateX(0);
+		transition: transform .5s ease-out;
+	}
+
+	&.animate--out {
+		transform: translateX(-100%);
+		transition: transform .5s ease-out;
+	}
+}
+
+.overflow > * {
+	transform: translateY(-100%);
+}
+
+.screen-intro {
+	&__title,
+	&__quote {
+		white-space: nowrap;
+		
+	}
+
+	&__title {
+		font-size: 12rem;
+	}
+
+	&__quote {
+		margin: 0;
+		font-size: 5rem;
+		letter-spacing: 10px;
+	}
+
+	.center-text {
+		top: calc(50% - 5rem);
+		text-align: center;
+	}
+}
+
+.screen__pic {
+	.scan {
+		position: relative;
+		padding: 8rem;
+		.scan_outer {
+			z-index: 200;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: url(../../dist/img/scan.svg) 0 0 no-repeat;
+		}
+		img {
+			position: relative;
+			z-index: 100;
+		}
+	}
+}
+
+.screen__confirm {
+	&__title {
+		white-space: nowrap;
+	}
+}
+
+.screen__showsong {
+	&__title {
+		white-space: nowrap;
+	}
+
+	&__album-cover {
+		width: 40rem;
+		height: 40rem;
+	}
+
+	&--play {
+		vertical-align: middle;
+	}
+}
+
+
+.button-container {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 30%;
+	background: #000;
+	display: flex;
+	flex: 0 0 auto;
+	justify-content: center;
+	align-items: center;
+	.button {
+		max-width: 300px;
+	}
+}
