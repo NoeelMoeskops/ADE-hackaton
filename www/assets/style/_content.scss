@@ -20,6 +20,7 @@
 	width: 100%;
 	height: 100%;
 	transform: translateX(100%);
+	overflow: hidden;
 	
 	.center-text {
 		position: absolute;
@@ -52,13 +53,17 @@
 	}
 
 	&__title {
-		font-size: 12rem;
+		@media screen and (min-width: 500px) {
+			font-size: 12rem;
+		}
 	}
 
 	&__quote {
 		margin: 0;
-		font-size: 5rem;
-		letter-spacing: 10px;
+		@media screen and (min-width: 500px) {
+			font-size: 5rem;
+			letter-spacing: 10px;
+		}
 	}
 
 	.center-text {
@@ -70,7 +75,10 @@
 .screen__pic {
 	.scan {
 		position: relative;
-		padding: 8rem;
+		padding: 3rem;
+		@media screen and (min-width: 500px) {
+			padding: 8rem;
+		}
 		.scan_outer {
 			z-index: 200;
 			position: absolute;
@@ -87,20 +95,32 @@
 	}
 }
 
-.screen__confirm {
+.screen-confirm {
 	&__title {
-		white-space: nowrap;
+		width: 100%;
+		margin: 0 0 5rem;
+		font-size: 2rem;
+		@media screen and (min-width: 500px) {
+			white-space: nowrap;
+			font-size: 5rem;
+		}
 	}
 }
 
 .screen__showsong {
 	&__title {
-		white-space: nowrap;
+		font-size: 2rem;
+		@media screen and (min-width: 500px) {
+			white-space: nowrap;
+		}
 	}
 
 	&__album-cover {
-		width: 40rem;
-		height: 40rem;
+		@media screen and (min-width: 500px) {
+			width: 40rem;
+			height: 40rem;
+		}
+		
 	}
 
 	&--play {
