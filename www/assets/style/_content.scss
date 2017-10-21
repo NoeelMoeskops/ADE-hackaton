@@ -1,0 +1,67 @@
+.main {
+	position: relative;
+	width: 100vw;
+	height: 100vh;
+	@include gradientAnimated();
+	overflow: hidden;
+}
+
+.screen {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	transform: translateX(100%);
+
+	&.animate--in {
+		transform: translateX(0);
+	transition: transform .5s ease-out;
+	}
+
+	&.animate--out {
+		transform: translateX(-100%);
+	transition: transform .5s ease-out;
+	}
+}
+
+.screen-intro {
+	&__title,
+	&__quote {
+		position: absolute;
+		color: #fff;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		white-space: nowrap;
+		.overflow > * {
+			transform: translateY(-100%);
+		}
+	}
+
+	&__title {
+		top: calc(50% - #{$m} * 5);
+		font-size: 12rem;
+	}
+
+	&__quote {
+		top: calc(50% - #{$m} * -1);
+		margin: 0;
+		font-size: 5rem;
+		letter-spacing: 10px;
+	}
+
+}
+
+.button-container {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 30%;
+	background: #000;
+	display: flex;
+	flex: 0 0 auto;
+	justify-content: center;
+	align-items: center;
+	.button {
+		max-width: 300px;
+	}
+}

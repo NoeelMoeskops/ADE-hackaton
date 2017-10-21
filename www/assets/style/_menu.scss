@@ -1,0 +1,323 @@
+.nav--burger {
+    position: absolute;
+    top: $m;
+    right: $m * 2;
+    width: 10rem;
+    height: 3rem;
+    cursor: pointer;
+    
+    span {
+        display: inline-block;
+        margin: 0.5rem 2rem 0 0;
+        color: #000;
+    }
+
+    div,
+    div:before,
+    div:after {
+        width: 4.5rem;
+        height: 1px;
+        background: #000;
+    }
+
+    div {
+        display: inline-block;
+        position: relative;
+        vertical-align: top;
+        transform-origin: center 1.2rem;
+        transition: height .15s ease-out;
+    }
+
+    div:before,
+    div:after {
+        content: ' ';
+        position: absolute;
+    }
+
+    div:before {
+        top: 1.2rem;
+    }
+    div:after {
+        top: 2.4rem;
+    }
+
+    &:hover {
+        // style 2 states, animate them too
+        div {
+            // transform: scaleY(3)
+            height: 3rem;
+        }
+    }
+}
+
+.nav--container {
+    position: fixed;
+    left: 100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    background: #000;
+    // think about what kind of background, think abuot the transitions I wanna show.
+    // z-index: 50;
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .nav--holder {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .nav--overlay {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 2.5rem;
+        height: 100%;
+        background-color: #000;
+    }
+
+    .nav--main {
+        position: absolute;
+        top: 50%;
+        right: $m;
+        transform: translate(0,-50%)
+
+        li {
+            margin: 2rem 3rem 2rem 0;
+        }
+
+        a {
+            overflow: hidden;
+            position: relative;
+            display: block;
+            color: #fff;
+            font-size: 2.5rem;
+            text-align: right;
+            text-decoration: none;
+            will-change: opacity, transform;
+
+            &:after {
+                content: ' ';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background-color: #fff;
+                will-change: transform;
+                transition: transform .2s ease-out;
+            }
+
+            &:hover {
+                &:after {
+                    transform: translateX(100%);
+                }
+            }
+        }
+    }
+
+    .nav--projects-overview {
+        position: absolute;
+        top: 50%;
+        left: $m;
+        transform: translate3d(0, -50%, 0);
+
+        li {
+            display: inline-block;
+
+            &:first-child .nav--project { margin-left: 0; }
+            &:last-child .nav--project { margin-right: 0; }
+        }
+
+        .nav--project {
+            overflow: hidden;
+            position: relative;
+            display: block;
+            width: 15rem;
+            height: 60rem;
+            padding: $m/2;
+            background-color: firebrick;
+            transition: margin .4s ease-out;
+            
+            &:hover {
+                margin-left: .8rem;
+                margin-right: .8rem;
+
+                .nav--project-overlay {
+                    transform: translateY(100%);
+                }
+            }          
+
+            .nav--project-inner {
+                position: relative;
+                width: 100%;
+                height: 100%;
+            }
+
+            span {
+                position: absolute;
+                color: #fff;
+                white-space: nowrap;
+                line-height: 1;
+                overflow: hidden;
+            }
+            
+            .number {
+                left: 0;
+                font-size: 4rem;
+
+                &:after {
+                    content: '.';
+                }
+            }
+            
+            .title, .role, .date {
+                transform: rotate(-90deg);
+                transform-origin: left bottom;
+            }
+
+            .title {
+                left: 100%;
+                bottom: 0;
+                font-size: 4rem;
+            }
+
+            .role {
+                top: -$m/2;
+                right: 0;
+                text-align: right;
+                font-size: 1.4rem;
+                transform-origin: right bottom;
+            }
+
+            .date {
+                left: 60%;
+                bottom: 0;
+                font-size: 1.4rem;
+            }
+
+            .nav--project-overlay {
+                position: absolute;
+                top: -100%;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.5);
+                transition: transform .2s ease-out;
+            }
+        }
+    }
+
+    .has-js & {
+        // div's created by splitText plugin
+        .nav--main a .overflow > div {
+            transform: translateY(-100%);
+        }
+
+        .nav--projects-overview .nav--project {
+            opacity: 0;
+        }
+    }
+}
+
+.nav--close {
+    position: absolute;
+    top: $m;
+    right: $m * 2;
+    width: 4.5rem;
+    height: 4.5rem;
+    cursor: pointer;
+    z-index: 50;
+
+    &:before,
+    &:after {
+        content: ' ';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        background-color: #fff;
+        width: 4.5rem;
+        height: 1px;
+        transform-origin: center center;
+        transition: transform .2s ease-out;
+    }
+
+    &:before {
+        transform: scale(1) rotate(45deg);
+    }
+    &:after {
+        transform: scale(1) rotate(315deg);
+    }
+
+    &:hover {
+        &:before,
+        &:after {
+            transform: rotate(180deg);
+        }
+        // &:before {
+        //     transform: scale(1.25) rotate(45deg);
+        // }
+        // &:after {
+        //     transform: scale(1.25) rotate(315deg);
+        // }
+    }
+}
+
+.nav--social {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    margin: 10rem 0;
+    text-align: center;
+
+    li {
+        position: relative;
+        display: inline-block;
+        width: 1.6rem;
+        margin: 0 0.8rem;
+    }
+    
+    .anchor--social {
+        display: block;
+        cursor: pointer;
+        will-change: transform;
+        transition: transform .1s ease-out;
+        
+        &:hover {
+            transform: scale(1.4);
+
+            & + .anchor--shadow {
+                transform: scale(1.4, .8);
+                // background-color: rgba(0,0,0,.2);
+            }
+        }
+
+        path {
+            fill: #fff;
+        }
+    }
+
+    .anchor--shadow {
+        display: none;
+        position: absolute;
+        bottom: -1.3rem;
+        left: 0;
+        width: 2.5rem;
+        height: .8rem;
+        border-radius: 50%;
+        background-color: rgba(255,255,255,0.2);
+        filter: blur(3px);
+        will-change: background-color;
+        transition: background-color .2s ease-out,
+                    transform .2s ease-out;
+    }
+}

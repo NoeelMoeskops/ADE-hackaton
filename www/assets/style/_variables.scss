@@ -1,0 +1,32 @@
+// margin
+$m : 2rem; 
+$g: 16.66vw;
+
+$color-blue: #00c5cd;
+$color-green: #64dcb6;
+
+@mixin gradientAnimated() {
+	background: linear-gradient(270deg, $color-blue, $color-green);
+	background-size: 300% 300%;
+
+	animation: gradientFlow 10s ease infinite;
+
+	@keyframes gradientFlow { 
+	    0%{background-position:0% 50%}
+	    50%{background-position:100% 50%}
+	    100%{background-position:0% 50%}
+	}
+}
+
+// font
+$f1: 'Work Sans', sans-serif;
+$f2: 'Eczar', serif;
+
+@mixin fontBody() {
+	font-weight: 400;
+	font-family: $f1;
+}
+@mixin fontHeading() {
+	font-weight: 700;
+	font-family: $f2;
+}
