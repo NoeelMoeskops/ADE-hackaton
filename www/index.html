@@ -1,24 +1,74 @@
 <!doctype html>
-<html>
-
+<html lang="">
 <head>
     <meta charset="utf-8">
-    <title>ADE hackaton</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>MTV Mood</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="description" content="beschrijfing"/>
-    <meta name="keywords" content="ADE hackaton"/>
-    <meta name="author" content="Noeël Moeskops, Alfred Espinosa"/>
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+    <link href="https://fonts.googleapis.com/css?family=Eczar:400,700|Work+Sans:300,700" rel="stylesheet">
 
-    <link rel="stylesheet" href="dist/style/main.css" type="text/css"/>
-    <!--<link rel="icon" href="dist/media/img/icon.png" />-->
-    <script src="https://code.jquery.com/jquery-3.2.1.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="dist/style/index.min.css">
 </head>
-
 <body>
-<!--// api js file-->
-<script type="text/javascript" src="cordova.js"></script>
-<!--<script type="text/javascript" charset="utf-8" src="js/phonegap.js"></script>-->
-<script type="text/javascript" src="assets/script/foto.js" charset="utf-8"></script>
-</body>
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
 
+<div class="app">
+    <main class="main">
+        <div class="screen screen-intro animate--in">
+            <div class="center-text">
+                <h1 class="screen-intro__title">MTV Mood</h1>
+                <h2 class="screen-intro__quote">What's my mood?</h2>
+            </div>
+
+            <div class="button-container">
+                <a class="button button-start">
+                    <span>What's my mood?</span>
+                </a>
+            </div>
+        </div>
+        <div class="screen screen__pic">
+            <div class="center-text">
+                <h1>You look fantastic</h1>
+                <div class="scan">
+                    <div class="scan_outer"></div>
+                    <img src="dist/img/Maarten-scanned.jpg" alt="Michae jackson - bad" class="screen__showsong__album-cover">
+                </div>
+            </div>
+        </div>
+        <div class="screen screen__confirm">
+            <div class="center-text">
+                <h1 class="screen-confirm__title">You're are sooooooo {MOOD_VAR}</h1>
+
+                <a class="button js--show-song"><span>Show me my song</span></a>
+            </div>
+        </div>
+        <div class="screen screen__showsong">
+            <div class="center-text">
+                <h1 class="screen__showsong__title">THIS IS YOUR {SONG}</h1>
+                <img src="dist/img/Michael_Jackson_-_Bad.png" alt="Michae jackson - bad" class="screen__showsong__album-cover">
+                <a class="button screen__showsong--play">Play Song</a>
+            </div>
+        </div>
+    </main>
+
+    <div class="screen screen__load">
+        <div class="center-text">LOADING...</div>
+    </div>
+
+</div>
+
+
+<script src="dist/js/plugins-min.js"></script>
+<script src="dist/js/main-min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.js" type="application/javascript"></script>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="assets/script/foto.js" charset="utf-8"></script>
+
+</body>
 </html>
