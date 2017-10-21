@@ -11,8 +11,8 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync').create(),
     autoprefixer = require('gulp-autoprefixer'),
     minify = require('gulp-minify'),
-    sassPath = "./assets/style/**/*.scss",
-    typescriptPath = "./assets/script/**/*.ts";
+    sassPath = "./www/assets/style/**/*.scss",
+    typescriptPath = "./www/assets/script/**/*.ts";
 
 gulp.task('default', ['watch', 'connect']);
 
@@ -22,11 +22,14 @@ gulp.task('watch', function() {
 });
 
 gulp.task('connect', function() {
-    connect.server({}, function() {
+    connect.server({
+        base: 'www'
+    }, function() {
         browserSync.init({
             proxy: '127.0.0.1:8000',
             open: false,
             notify: false,
+            port: 8181,
             ui: {
                 port: 8888
             }
@@ -47,7 +50,7 @@ gulp.task('sass', function() {
             cascade: false
         }))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('dist/style'))
+        .pipe(gulp.dest('www/dist/style'))
         .pipe(browserSync.stream());
 });
 gulp.task('typescript', function() {
@@ -62,7 +65,7 @@ gulp.task('typescript', function() {
 });
 
 gulp.task('build', function() {
-    gulp.src('assets/script/ts/*.js')
+    gulp.src('www/assets/script/ts/*.js')
         .pipe(minify({
             ext: {
                 min: '.min.js'
@@ -73,5 +76,5 @@ gulp.task('build', function() {
             },
             noSource: true
         }))
-        .pipe(gulp.dest('dist/script'));
+        .pipe(gulp.dest('www/dist/script'));
 });
