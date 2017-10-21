@@ -5,7 +5,8 @@ var introTitle = $('.screen-intro__title');
 var introQuote = $('.screen-intro__quote');
 var introButtonContainer = $('.button-container');
 var introButton = $('.button-start');
-// var socialItems = $('.anchor--social');
+var btnShowSong = $('.js--show-song');
+var btnShowMoods = $('.js--show-moods');
 
 // settings
 TweenLite.defaultEase = Linear.easeNone;
@@ -13,12 +14,18 @@ TweenLite.defaultEase = Linear.easeNone;
 var arrScreens = $('.screen');
 var currentScreen = 0;
 
-function nextScreen() {
+// skipsscreen is not needed in current implementation
+function nextScreen(skipScreen) {
 	var current = arrScreens.eq(currentScreen);
 	var next = arrScreens.eq(currentScreen+1);
 	animateScreenOut(current);
-	animateScreenIn(next);
-	currentScreen++;
+
+	// if skipScreen, go to next+1
+	skipScreen ? animateScreenIn(next+1) : animateScreenIn(next)
+	
+	// update the values
+	skipScreen ? currentScreen += 2 : currentScreen++
+		
 }
 
 // animations
@@ -40,7 +47,6 @@ function animateScreenIn(target) {
 }
 
 function animateScreenOut(target) {
-	console.log(target);
 	target.removeClass('animate--in');
 	target.addClass('animate--out');
 
@@ -66,12 +72,18 @@ tlIntroOut
 
 
 function init() {
-	console.log('init');
-
 	tlIntroIn.play();
 
 	introButton.on('click', function() {
 		tlIntroOut.play();
+	});
+
+	btnShowSong.on('click', function() {
+		nextScreen();
+	});
+
+	btnShowMoods.on('click', function() {
+		nextScreen(true);
 	});
 }
 
@@ -79,6 +91,9 @@ function init() {
 
 // init
 document.addEventListener('DOMContentLoaded', init);
+$(document).on('keydown', function(e) {
+	if (e.keyCode === 39) nextScreen();		
+});
 
 
 
