@@ -1,5 +1,5 @@
 document.addEventListener("deviceready", function () {
-    init();
+    // init();
 }, false);
 
 function getMood() {
@@ -8,8 +8,11 @@ function getMood() {
 
         sendToServer().done(function (data) {
             // determan mood
-            return getlowestMood(data[0].scores);
-
+            // console.log("haha");
+            var lowestMood = getlowestMood(data[0].scores);
+            console.log(lowestMood);
+            document.querySelector("#MOOD_VAR").append(lowestMood);
+            nextScreen();
         });
     }, function (e) {
         // foto failed
@@ -17,8 +20,8 @@ function getMood() {
     }, {destinationType: Camera.DestinationType.DATA_URL});
 }
 function getlowestMood(mood) {
-    console.info("getlowestMood");
-    return "happiness";
+    // console.info("getlowestMood");
+    return "happy";
 //        var lowest = 0;
 //        console.info("s" + mood.length);
 //        for(var i = 0; i < mood.length; i++) {
@@ -55,7 +58,9 @@ function sendToServer() {
     });
 }
 function init() {
-    sendToServer().done(function (data) {
-        getlowestMood(data[0].scores);
-    });
+    // var lowestMood;
+    // sendToServer().done(function (data) {
+    //     lowestMood = getlowestMood(data[0].scores);
+    // });
+    getMood();
 }

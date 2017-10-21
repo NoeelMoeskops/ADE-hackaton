@@ -27,6 +27,7 @@ function nextScreen(skipScreen) {
 	switch (currentScreen) {
 	  case 1:
 	  	console.log('screen ' +currentScreen);
+	  	getMood();
 	    break;
 	  case 2:
 	  	console.log('tlConfirm ' +currentScreen);
