@@ -1,8 +1,6 @@
 $('html').addClass('has-js');
 
-// elements
-var introTitle = $('.screen-intro__title');
-var introQuote = $('.screen-intro__quote');
+// buttons
 var introButtonContainer = $('.button-container');
 var introButton = $('.button-start');
 var btnShowSong = $('.js--show-song');
@@ -25,12 +23,40 @@ function nextScreen(skipScreen) {
 	
 	// update the values
 	skipScreen ? currentScreen += 2 : currentScreen++
-		
+	
+	switch (currentScreen) {
+	  case 1:
+	  	console.log('screen ' +currentScreen);
+	    break;
+	  case 2:
+	  	console.log('tlConfirm ' +currentScreen);
+	  	tlConfirm.play();
+	    break;
+	  case 3:
+	  	console.log('tlShowSong ' +currentScreen);
+	  	tlShowSong.play();
+	    break;
+	  case 4:
+	  	console.log('screen ' +currentScreen);
+	    break;
+	  default:
+	  	console.log('default ' +currentScreen);
+	    break;
+	}
 }
 
 // animations
+
+// splittexts elements
+var introTitle = $('.screen-intro__title');
+var introQuote = $('.screen-intro__quote');
+var showSongConfirm = $('.screen-confirm__title');
+var showSongTitle = $('.screen__showsong__title');
+
 var splitIntroTitle = new SplitText(introTitle, { type: 'chars, lines', linesClass: 'overflow' });
 var splitIntroQuote = new SplitText(introQuote, { type: 'chars, lines', linesClass: 'overflow' });
+var splitshowSongConfirm = new SplitText(showSongConfirm, { type: 'chars, lines', linesClass: 'overflow' });
+var splitShowSongTitle = new SplitText(showSongTitle, { type: 'chars, lines', linesClass: 'overflow' });
 
 function animateCharsIn(target, type) {
 	var tl = new TimelineLite();
@@ -69,7 +95,15 @@ tlIntroOut
 	.call(nextScreen, [], this, 1.2)
 	;
 
+var tlConfirm = new TimelineLite({ paused: true });
+tlConfirm
+	.call(animateCharsIn, [splitshowSongConfirm, 'chars'], this, 0)
+	;
 
+var tlShowSong = new TimelineLite({ paused: true });
+tlShowSong
+	.call(animateCharsIn, [splitShowSongTitle, 'chars'], this, 0)
+	;
 
 function init() {
 	tlIntroIn.play();
