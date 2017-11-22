@@ -38,6 +38,7 @@
                 </a>
             </div>
         </div>
+
         <div class="screen screen__pic">
             <div class="center-text">
                 <h1>You look fantastic</h1>
@@ -47,6 +48,7 @@
                 </div>
             </div>
         </div>
+
         <div class="screen screen__confirm">
             <div class="center-text">
                 <h1 class="screen-confirm__title">Are you <span id="MOOD_VAR"></span></h1>
@@ -54,13 +56,15 @@
                 <a class="button js--show-song"><span>Show me my song</span></a>
             </div>
         </div>
+
         <div class="screen screen__showsong">
-            <div class="center-text">
-                <h1 class="screen__showsong__title">THIS IS YOUR <span id="SONG">{SONG}</span></h1>
-                <!--<img src="dist/img/Michael_Jackson_-_Bad.png" alt="Michae jackson - bad" class="screen__showsong__album-cover">-->
-                <div id="tracks-container" class="screen__showsong__album-cover"></div>
-                <a class="button screen__showsong--play">Play Song</a>
-            </div>
+            <h1 class="screen__showsong__title">THESE ARE YOUR SONGS</h1>
+            <div id="tracks-container" class="screen__showsong__album-cover"></div>
+        </div>
+
+        <div class="screen screen__playsong">            
+            <div id="play-container" class="screen__showsong__album-cover screen__showsong__album-play"></div>
+            <a class="button js--retry"><span>LETS DU IT AGAIN!</span></a>
         </div>
     </main>
 
@@ -74,6 +78,9 @@
     {{#each tracks}}
     <div data-track-id="{{id}}" style="background-image:url(http://direct.rhapsody.com/imageserver/v2/albums/{{albumId}}/images/300x300.jpg)" class="cover">
         <div class=content-name>{{name}}</div>
+        <div class="button-container">
+            <a class="button js--play-song"><span>Show me my song</span></a>
+        </div>
     </div>
     {{/each}}
 </script>
@@ -90,17 +97,39 @@
 </script>
 
 <script type="text/javascript">
+    var currentTrack;
+    // show top tracks
     const tracksTemplateSource = document.getElementById('tracks-template').innerHTML;
     const tracksTemplate = Handlebars.compile(tracksTemplateSource);
-
     const $tracks = $('#tracks-container');
-
     const getTopTracks = $.get('https://api.napster.com/v2.1/tracks/top?limit=4&apikey=MzdlNTdiNDAtM2RhNy00YjU4LWE3NWItYTVlMWY3OGRkYTE2');
+    
+    // play track
+    const playTemplateSource = document.getElementById('play-template').innerHTML;
+    const playTemplate = Handlebars.compile(playTemplateSource);
+    const $play = $('#play-container');
+    var getPlayTrack;
 
-    getTopTracks
-        .then((response) => {
-        $tracks.html(tracksTemplate(response));
+    getTopTracks.then((response) => { 
+        $tracks.html(tracksTemplate(response)); 
+
+        var btnPlaySong = $('.js--play-song');
+        btnPlaySong.on('click', function() {
+            nextScreen();
+            currentTrack = $(this).parents('.cover').data().trackId;
+            console.log(currentTrack);
+
+            getPlayTrack = $.get('https://api.napster.com/v2.1/tracks/' + currentTrack + '?apikey=MzdlNTdiNDAtM2RhNy00YjU4LWE3NWItYTVlMWY3OGRkYTE2');
+
+            
+            getPlayTrack.then((response) => { 
+                console.log(response);
+                $play.html(playTemplate(response)) 
+            });
+        });
     });
+
+
 </script>
 <script src="dist/js/plugins-min.js"></script>
 <!--<script src="dist/js/main-min.js"></script>-->

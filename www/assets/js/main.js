@@ -4,6 +4,7 @@ $('html').addClass('has-js');
 var introButtonContainer = $('.button-container');
 var introButton = $('.button-start');
 var btnShowSong = $('.js--show-song');
+var btnPlaySong = $('.js--play-song');
 var btnShowMoods = $('.js--show-moods');
 var btnRetry = $('.js--retry');
 

@@ -1,6 +1,10 @@
 .screen__showsong {
+   overflow: scroll;
+
    &__title {
+      margin: 2.5rem 0;
       font-size: 2rem;
+      text-align: center;
       @media screen and (min-width: 500px) {
          white-space: nowrap;
       }
@@ -18,29 +22,32 @@
    }
 }
 
+
+#tracks-container {
+   width: 100%;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+}
+
 .cover {
    background-size: cover;
    width: 300px;
    height: 300px;
-   display: inline-block;
    margin: 10px;
-   float: left;
    border: 3px solid black;
    position: relative;
+   
+   display: flex;
+   flex: 0 0 auto;
+   justify-content: center;
+   align-content: center;
+   align-items: center;
+   flex-direction: column;
 
    &:hover {
        cursor: pointer;
    }
-}
-
-.logo {
-   width: 150px;
-}
-
-.audio {
-   position: absolute;
-   left: 12px;
-   bottom: -24px;
 }
 
 .content-name {
