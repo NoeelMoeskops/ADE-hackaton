@@ -14,10 +14,10 @@ function getMood() {
         //     // console.log(lowestMood);
         //     // document.querySelector("#MOOD_VAR").append(lowestMood);
         // console.info("toBinary");
-        // var binary = base64ToArrayBuffer(base64);
+        // var binary = base64toBlob(base64);
         // var byteArray = base64_to_uint8array(base64);
         // console.info("getEmotion");
-        // getEmotion(byteArray);
+        // getEmotion(binary);
         setTimeout(function () {
             nextScreen();
         }, 2000);
@@ -29,14 +29,17 @@ function getMood() {
 }
 
 
-function base64_to_uint8array(s) {
-    var byteChars = atob(s);
-    var l = byteChars.length;
-    var byteNumbers = new Array(l);
-    for (var i = 0; i < l; i++) {
-        byteNumbers[i] = byteChars.charCodeAt(i);
+function base64toBlob(base64) {
+    var binaryString = window.atob(base64);
+    var binaryLen = binaryString.length;
+    var bytes = new Uint8Array(binaryLen);
+
+    for (var i = 0; i < binaryLen; i++) {
+        var ascii = binaryString.charCodeAt(i);
+        bytes[i] = ascii;
     }
-    return new Uint8Array(byteNumbers);
+
+    return new Blob([bytes]);
 }
 
 function getlowestMood(mood) {
