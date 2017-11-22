@@ -1,0 +1,47 @@
+.header {
+   font-size: 50px;
+   text-align: center;
+}
+
+.main {
+   position: relative;
+   width: 100vw;
+   height: 100vh;
+   @include gradientAnimated();
+   overflow: hidden;
+   color: #fff;
+
+   h1, h2, h3, p {
+      color: #fff;
+   }
+}
+
+.screen {
+   position: fixed;
+   width: 100%;
+   height: 100%;
+   transform: translateX(100%);
+   overflow: hidden;
+
+   .center-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+   }
+
+   &.animate--in {
+      transform: translateX(0);
+      transition: transform .5s ease-out;
+   }
+
+   &.animate--out {
+      transform: translateX(-100%);
+      transition: transform .5s ease-out;
+   }
+}
+
+.overflow > * {
+   transform: translateY(-100%);
+}

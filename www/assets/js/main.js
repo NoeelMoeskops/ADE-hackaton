@@ -5,9 +5,7 @@ var introButtonContainer = $('.button-container');
 var introButton = $('.button-start');
 var btnShowSong = $('.js--show-song');
 var btnShowMoods = $('.js--show-moods');
-
-// settings
-TweenLite.defaultEase = Linear.easeNone;
+var btnRetry = $('.js--retry');
 
 var arrScreens = $('.screen');
 var currentScreen = 0;
@@ -46,7 +44,22 @@ function nextScreen(skipScreen) {
 	}
 }
 
+// lets reset the screens and start over
+function resetScreen() {
+	animateScreenOut(arrScreens.eq(currentScreen));
+	currentScreen = 1;
+	animateScreenIn(arrScreens.eq(currentScreen));
+
+	// todo
+	// remove content set by AJAX
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
 // animations
+
+// settings
+TweenLite.defaultEase = Linear.easeNone;
 
 // splittexts elements
 var introTitle = $('.screen-intro__title');
@@ -120,6 +133,11 @@ function init() {
 	btnShowMoods.on('click', function() {
 		nextScreen(true);
 	});
+
+	btnRetry.on('click', function() {
+		resetScreen();
+	});
+
 }
 
 
