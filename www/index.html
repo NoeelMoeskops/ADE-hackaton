@@ -50,7 +50,13 @@
 
         <div class="screen screen__confirm">
             <div class="center-text">
-                <h1 class="screen-confirm__title">Are you <span id="MOOD_VAR"></span></h1>
+                <h1 class="screen-confirm__title">Is this you?</h1>
+                <ul class="screen-confirm__props">
+                    <li>Emotion: <span id="MOOD_VAR">Happy</span></li>
+                    <li>Age: <span id="AGE_VAR">27</span></li>
+                    <li>Gender: <span id="GENDER_VAR">Male</span></li>
+                    <li>Country: <span id="COUNTRY_VAR">The Netherlands</span></li>
+                </ul>
                 <a class="button js--retry"><span>nope, retry!</span></a>
                 <a class="button js--show-song"><span>Show me my song</span></a>
             </div>
@@ -120,7 +126,7 @@
 
             getPlayTrack = $.get('https://api.napster.com/v2.1/tracks/' + currentTrack + '?apikey=MzdlNTdiNDAtM2RhNy00YjU4LWE3NWItYTVlMWY3OGRkYTE2');
 
-            
+
             getPlayTrack.then((response) => { 
                 console.log(response);
                 $play.html(playTemplate(response)) 
