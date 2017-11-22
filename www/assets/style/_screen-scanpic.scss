@@ -1,0 +1,22 @@
+.screen__pic {
+   .scan {
+      position: relative;
+      padding: 3rem;
+      @media screen and (min-width: 500px) {
+         padding: 8rem;
+      }
+      .scan_outer {
+         z-index: 200;
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background: url(../../dist/img/scan.svg) 0 0 no-repeat;
+      }
+      img {
+         position: relative;
+         z-index: 100;
+      }
+   }
+}

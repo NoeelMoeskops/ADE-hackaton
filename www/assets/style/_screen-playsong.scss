@@ -1,0 +1,44 @@
+.screen__playsong {
+   overflow: scroll;
+
+   &__title {
+      font-size: 2rem;
+      text-align: center;
+      @media screen and (min-width: 500px) {
+         white-space: nowrap;
+      }
+   }
+
+   &__album-cover {
+      @media screen and (min-width: 500px) {
+         width: 40rem;
+         height: 40rem;
+      }
+   }
+
+   &--play {
+      vertical-align: middle;
+   }
+
+   .js--retry {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+   }
+}
+
+#play-container {
+   width: 100%;
+   height: 100%;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+}
+
+.audio {
+   position: absolute;
+   top: 100%;
+}
